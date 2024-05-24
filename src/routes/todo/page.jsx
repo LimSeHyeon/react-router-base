@@ -26,11 +26,11 @@ export default function TodoPage() {
           setCancelTodo(() => {
             return () => {
               cancelFn();
-              setCancelTodo(null);
+              setCancelTodo(undefined);
             };
           });
           console.log(action);
-          dispatch(action);
+          // dispatch(action);
         }}
       >
         입력
