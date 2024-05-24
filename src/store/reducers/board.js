@@ -6,13 +6,14 @@ const iniitialState = {
     loading: "idle",
 };
 
-//비동기 처리를 위한 thunk 생성
+// 비동기 처리를 위한 thunk 생성
 const fetchBoardList = createAsyncThunk(
-    "board/fetchBoardList", async (data, thunkAPI) => {
-        const data = getBoardList();
-        return data;
+    "board/fetchBoardList",
+    async (_data, thunkAPI) => {
+      const data = await getBoardList();
+      return data;
     }
-);
+  );
 //api 호출 예정
 
 const boardSlice = createSlice({
@@ -25,7 +26,7 @@ const boardSlice = createSlice({
         });
         builder.addCase(fetchBoardList.fulfilled, (state, action) => {
             state.loading = "fulfilled";
-            state.boards.push(action.payload);
+            state.boards.push(...action.payload);
         });
         builder.addCase(fetchBoardList.rejected, (state, action) => {
             state.loading = "rejected";

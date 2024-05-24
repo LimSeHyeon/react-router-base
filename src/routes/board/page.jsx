@@ -1,26 +1,22 @@
-// import MyNavbar from "~/components/MyNavbar/MyNavbar";
-// import MyFooter from "~/components/MyFooter/MyFooter";
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getBoardList } from '~/lib/apis/board';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBoardList } from '~/store/reducers/board';
 
 export default function BoardPage() {
-
-  const [boardList, setBoardList] = useState([]);
-
-  // const location = useLocation();
-  // console.log(location);
 
   // useNavigate: navigate 함수를 사용할 수 있게 함
   // navigate: 페이지 이동 함수
   const navigate = useNavigate();
+  const {boards: boardList, loading } = useSelector((state) => state.board);
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    getBoardList().then((data)=>{
-      setBoardList(data);
-    });
-  }, []);
+  useEffect(()=> {
+    const action = fetchBoardList();
+    console.log("action", action);
+    dispatch(action);
+  }, [dispatch]);
 
   return (
     <div>
