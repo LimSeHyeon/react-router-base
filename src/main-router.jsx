@@ -5,7 +5,7 @@ import BoardDetailPage from "~/routes/board/detail/page";
 import BoardWritePage from "~/routes/board/write/page";
 
 import CounterPage from "~/routes/counter/page";
-
+import TodoPage from "~/routes/todo/page";
 import BoardLayout from "~/routes/board/layout";
 
 export const routerObj = [
@@ -15,9 +15,14 @@ export const routerObj = [
     index: true,
   },
   {
-    path:'/counter',
+    path: "/counter",
     element: <CounterPage />,
-    index: true, 
+    index: true,
+  },
+  {
+    path: "/todo",
+    element: <TodoPage />,
+    index: true,
   },
   {
     path: "/board",
@@ -27,7 +32,8 @@ export const routerObj = [
         path: "",
         index: true,
         element: <BoardPage />,
-      },{
+      },
+      {
         // parameter 전달 받기
         path: ":boardId",
         element: <BoardDetailPage />,

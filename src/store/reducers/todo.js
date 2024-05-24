@@ -5,8 +5,31 @@
  * 2. TodoApp 구현
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    
-}
+  todos: [],
+  lastId: 0,
+};
+
+const todoSlice = createSlice({
+  name: "todo",
+  initialState: initialState,
+  reducers: {
+    addTodo: (state, action) => {
+      const { todo } = action.payload;
+      state.todos.push({
+        id: state.lastId,
+        ...todo,
+      });
+      state.lastId++;
+    },
+    removeTodo: (state, action) => {
+      const { todoId } = action.payload;
+      state.todos = state.todos.filter((todo) => todo.id !== todoId);
+    },
+  },
+});
+export const { addTodo, removeTodo } = todoSlice.actions;
+
+export default todoSlice.reducer;
