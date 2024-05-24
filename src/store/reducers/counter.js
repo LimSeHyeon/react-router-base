@@ -35,8 +35,8 @@ const counterSlice = createSlice({
 
 export const { increaseCounter, decreaseCounter, setColor } = counterSlice.actions;
 
-console.log("counter");
-console.log(increaseCounter());
-console.log(setColor());
+// console.log("counter");
+// console.log(increaseCounter());
+// console.log(setColor());
 
 export default counterSlice.reducer;
